@@ -16,15 +16,17 @@ namespace ConsoleApp1
             for (int i = 0; i < Count; i++)
             {
                 threads.Add(new Thread(Method));
+                if (i > 0) threads[i].IsBackground = true;
                 threads[i].Start();
             }
+            
 
         }
         public static void Method()
         {
             while (true)
             {
-                Console.WriteLine("Поток");
+                Console.WriteLine("Поток "+(Convert.ToInt32(Thread.CurrentThread.ManagedThreadId)-2));
                 Thread.Sleep(2000);
             }
             }
